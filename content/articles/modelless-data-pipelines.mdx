@@ -1,0 +1,72 @@
+---
+title: 'Modelless Data Pipelines'
+subtitle: 'A practical approach for research teams working with evolving inference assets.'
+summary: 'How to design data flow for experimentation, model evaluation, and responsible deployment without over-engineering the platform.'
+slug: 'modelless-data-pipelines'
+publishDate: '2026-01-17'
+updatedDate: '2026-01-24'
+tags:
+  - machine learning
+  - data
+  - research
+topic: 'machine-learning'
+featured: false
+readingTime: 12
+coverImage: 'https://images.unsplash.com/photo-1531497865142-0f329a7a77a8?auto=format&fit=crop&w=1200&q=80'
+---
+
+A model is not an endpoint. It is an evolving hypothesis embedded in a larger data system. This essay argues for pipelines that are model-aware rather than model-constrained.
+
+## A model is a signal, not a service
+
+The common pipeline mindset treats models like production-deployable artifacts. In research-focused systems, the pipeline should support iteration and experimentation first.
+
+> A strong data pipeline helps the team learn quickly without treating every experiment as a launch.
+
+### What modelless means
+
+- Data ingestion that serves multiple evaluation paths.
+- Metric stores designed for research questions, not just dashboards.
+- Modular transformation logic that can be inspected and extended.
+
+<Callout>
+When pipelines are built around a single model, they become brittle. Modelless pipelines are designed for the team’s evolving inquiry.
+</Callout>
+
+## Practical implementation
+
+A simple review process can keep the pipeline honest.
+
+```sql
+SELECT
+  user_id,
+  event_type,
+  feature_vector,
+  model_label
+FROM research_events
+WHERE event_date >= CURRENT_DATE - INTERVAL '30 days'
+```
+
+This query is a starting point for analysis that supports multiple models and multiple hypotheses.
+
+### Data ownership and control
+
+Balance curiosity with guardrails. Clear ownership keeps teams from accidentally using experimental results as operational truth.
+
+<Figure
+  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+  alt="Hands on keyboard with code overlay"
+  caption="Modelless data practices allow research and operations to coexist without forcing a single trajectory."
+/>
+
+## Designing for research and reliability
+
+The most useful data pipelines are those that preserve choice. They let researchers explore while maintaining the clarity needed for deployment decisions.
+
+### Principles for research pipelines
+
+- Keep experimentation transparent.
+- Avoid hidden state in transformation logic.
+- Treat every dataset as a living artifact.
+
+A thoughtful pipeline is not a product feature; it is a shared operating space for teams to reason about what the model is doing and why.
