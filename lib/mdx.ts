@@ -7,5 +7,7 @@ export async function serializeMdx(source: string) {
       rehypePlugins: [],
     },
     parseFrontmatter: true,
+    blockJS: true,
+    blockDangerousJS: true,
   });
 }

@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import ReadingProgress from '@/components/ReadingProgress';
 import TableOfContents from '@/components/TableOfContents';
 import NewsletterCTA from '@/components/NewsletterCTA';
-import MdxComponents from '@/components/MdxComponents';
+import ArticleInteraction from '@/components/ArticleInteraction';
 import { getArticleBySlug, getArticleSource, getArticleToc, sortedArticles } from '@/lib/articles';
 import { serializeMdx } from '@/lib/mdx';
 import ArticleRenderer from '@/components/ArticleRenderer';
@@ -97,24 +97,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
             </aside>
           </section>
 
-          <section className="rounded-[2.5rem] border border-slate-200/80 bg-white/95 p-10 shadow-soft">
-            <h2 className="text-2xl font-semibold text-slate-950">Reader interaction</h2>
-            <p className="mt-3 text-slate-600">A place for reactions and thoughtful engagement, designed for future backend integration.</p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {['Insightful', 'Practical', 'Thought-provoking'].map((label) => (
-                <button key={label} type="button" className="rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
-                  {label}
-                </button>
-              ))}
-            </div>
-            <div className="mt-8 space-y-4 rounded-3xl border border-slate-200/80 bg-slate-50 p-6">
-              <p className="text-sm font-semibold text-slate-900">Comments</p>
-              <textarea className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-4 text-slate-700 focus:outline-none" rows={4} placeholder="Share a perspective on this piece." />
-              <button type="button" className="rounded-3xl bg-forest px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
-                Post comment
-              </button>
-            </div>
-          </section>
+          <ArticleInteraction slug={article.slug} />
 
           <section className="grid gap-6 md:grid-cols-2">
             {related.map((relatedArticle) => (
